@@ -47,7 +47,7 @@ void setFlipperPiston(int position)
 	SensorValue[flipper_piston] = position;
 }
 
-void moveConveyor()
+void teleConveyor()
 {
 	if(intake)
 	{
@@ -62,7 +62,7 @@ void moveConveyor()
 		setConveyorMotors(0);
 	}
 }
-void move6Bar()
+void tele6Bar()
 {
 	if(raise6Bar)
 	{
@@ -78,9 +78,22 @@ void move6Bar()
 	}
 }
 
+void autonConveyor(int power, int duration)
+{
+	setConveyorMotors(power);
+	wait1Msec(duration);
+	setConveyorMotors(0);
+}
+void auton6Bar(int power, int duration)
+{
+	set6BarMotors(power);
+	wait1Msec(duration);
+	set6BarMotors(0);
+}
+
 void updateManip()
 {
 	toggleConveyorSpeed();
-	moveConveyor();
-	move6Bar();
+	teleConveyor();
+	tele6Bar();
 }

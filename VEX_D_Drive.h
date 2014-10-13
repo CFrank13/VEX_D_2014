@@ -13,7 +13,7 @@ void setRightDriveMotors(int power)
 	motor[right_front_drive] = power;
 }
 
-void drive()
+void teleDrive()
 {
 	if(abs(leftDrive) > DEADZONE)
 	{
@@ -34,7 +34,16 @@ void drive()
 	}
 }
 
+void autonDrive(int leftPower, int rightPower, int duration)
+{
+	setLeftDriveMotors(leftPower);
+	setRightDriveMotors(rightPower);
+	wait1Msec(duration);
+	setLeftDriveMotors(0);
+	setRightDriveMotors(0);
+}
+
 void updateDrive()
 {
-	drive();
+	teleDrive();
 }

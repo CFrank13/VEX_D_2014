@@ -1,55 +1,40 @@
 #include "VEX_D_Drive.h"
 #include "VEX_D_Manip.h"
 
-void comboA()
+//TODO: measure out real values
+void comboA(bool trigger)
 {
-	if(combo1)
+	if(trigger)
 	{
-		setFlipperPiston(1);
+		setFlipperPiston(1); //flip up the flipper
 
-		set6BarMotors(127);
-		wait1Msec(100);
-		set6BarMotors(0);
+		auton6Bar(127, 100); //raise the 6Bar slightly to be able to pick up a cube
 
-		setConveyorMotors(127);
-		wait1Msec(1000);
-		setConveyorMotors(0);
+		autonConveyor(127, 1000); //roll up the conveyer, picking up the cube, and putting it to the correct height
 
-		setLeftDriveMotors(-127);
-		setRightDriveMotors(127);
-		wait1Msec(500);
-		setLeftDriveMotors(0);
-		setRightDriveMotors(0);
+		autonDrive(-127, 127, 500); //manuever into position to pick up skyrise piece
+		autonDrive(127, 127, 750);
 
-		setLeftDriveMotors(127);
-		setRightDriveMotors(127);
-		wait1Msec(750);
-		setLeftDriveMotors(0);
-		setRightDriveMotors(0);
+		autonDrive(127, 127, 500); //drive forward to grab skyrise piece
 
-		setConveyorMotors(127);
-		wait1Msec(100);
-		setConveyorMotors(0);
+		autonConveyor(127, 100); //move conveyor and 6Bar up slightly to lift piece
+		auton6Bar(127, 100);
 
-		setLeftDriveMotors(-127);
-		setRightDriveMotors(-127);
-		wait1Msec(500);
-		setLeftDriveMotors(0);
-		setRightDriveMotors(0);
+		autonDrive(-127, -127, 100); //back up a bit
 
-		setConveyorMotors(127);
-		wait1Msec(100);
-		setConveyorMotors(0);
+		auton6Bar(-127, 500); //reset 6bar to floor position
 
-		setLeftDriveMotors(-127);
-		setRightDriveMotors(-127);
-		wait1Msec(100);
-		setLeftDriveMotors(0);
-		setRightDriveMotors(0);
+		autonConveyor(-127, 500); //lower conveyor to drop off skyrise piece
+
+		autonDrive(127, 127, 500); //move into position to drop off cube
+
+		autonConveyor(-127, 300); //drop cube
+
+		autonDrive(-127, -127, 300); //make sure we are not touching the cube
 	}
 }
 
 void updateCombos()
 {
-	comboA();
+	comboA(combo1);
 }
