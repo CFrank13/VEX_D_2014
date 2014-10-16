@@ -3,7 +3,7 @@
 #pragma config(Motor,  port2,           left_6bar_B,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           right_front_drive, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           left_conveyor, tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port5,           left_front_drive, tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port5,           left_front_drive, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           right_conveyor, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           left_6bar_A,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           right_6bar_A,  tmotorVex393_MC29, openLoop)

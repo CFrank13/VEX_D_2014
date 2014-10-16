@@ -27,7 +27,7 @@ void setConveyorMotors(int power)
 	if(!isHalfSpeed)
 	{
 		motor[left_conveyor] = power;
-		motor[left_conveyor] = power;
+		motor[right_conveyor] = power;
 	}
 	else
 	{
@@ -51,11 +51,11 @@ void teleConveyor()
 {
 	if(intake)
 	{
-		setConveyorMotors(127);
+		setConveyorMotors(-127);
 	}
 	else if(outtake)
 	{
-		setConveyorMotors(-127);
+		setConveyorMotors(127);
 	}
 	else
 	{
