@@ -26,7 +26,8 @@ void pre_auton()
 
 task autonomous()
 {
-
+	//redAuton(2);
+	blueAuton(2);
 }
 
 task usercontrol()
@@ -36,7 +37,6 @@ task usercontrol()
 		updateOI();
 		updateDrive();
 		updateManip();
-		updateCombos();
 	}
 
 }

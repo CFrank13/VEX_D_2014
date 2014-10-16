@@ -12,9 +12,6 @@ int conveyorBrake = 0;
 int raise6Bar = 0;
 int drop6Bar = 0;
 
-//Combos
-int combo1 = 0;
-
 void updateOI()
 {
 	leftDrive = vexRT[Ch3];
@@ -26,6 +23,4 @@ void updateOI()
 
 	raise6Bar = vexRT[Btn6U];
 	drop6Bar = vexRT[Btn6D];
-
-	combo1 = vexRT[Btn7D];
 }
