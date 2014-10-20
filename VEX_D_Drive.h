@@ -1,4 +1,5 @@
-#include "VEX_D_Macros.h"
+#include "VEX_D_Channels.h"
+#include "VEX_D_Encoders.h"
 
 static int DEADZONE = 15;
 

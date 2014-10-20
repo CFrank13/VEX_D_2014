@@ -21,7 +21,7 @@
 #pragma userControlDuration(120)
 
 #include "Vex_Competition_Includes.c" //Main competition background code...do not modify!
-#include "VEX_D_Combos.h"
+#include "VEX_D_Auton.h"
 
 void pre_auton()
 {
@@ -37,7 +37,8 @@ task usercontrol()
 {
 	while(true)
 	{
-		updateOI();
+		updateChannels();
+		updateEncoders();
 		updateDrive();
 		updateManip();
 	}

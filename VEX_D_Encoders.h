@@ -1,36 +1,12 @@
 
-//Drive
-int leftDrive = 0;
-int rightDrive = 0;
-
-//Conveyer
-int intake = 0;
-int outtake = 0;
-int conveyorBrake = 0;
-
-//Lift
-int raise6Bar = 0;
-int drop6Bar = 0;
-
-//Encoders
 int leftDriveEncoder = 0;
 int rightDriveEncoder = 0;
 int left6barEncoder = 0;
 int right6barEncoder = 0;
 int conveyorEncoder = 0;
 
-void updateOI()
+void updateEncoders()
 {
-	leftDrive = vexRT[Ch3];
-	rightDrive = vexRT[Ch2];
-
-	intake = vexRT[Btn5U];
-	outtake = vexRT[Btn5D];
-	conveyorBrake = vexRT[Btn7L];
-
-	raise6Bar = vexRT[Btn6U];
-	drop6Bar = vexRT[Btn6D];
-
 	leftDriveEncoder = SensorValue[left_drive_encoder];
 	rightDriveEncoder = SensorValue[right_drive_encoder];
 	left6barEncoder = SensorValue[left_6bar_encoder];
