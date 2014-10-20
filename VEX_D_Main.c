@@ -1,3 +1,8 @@
+#pragma config(Sensor, dgtl1,  left_6bar_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  right_6bar_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl5,  conveyor_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl7,  left_drive_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl9,  right_drive_encoder, sensorQuadEncoder)
 #pragma config(Motor,  port1,           left_back_drive, tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,           left_6bar_B,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           right_front_drive, tmotorVex393_MC29, openLoop)
@@ -20,7 +25,7 @@
 
 void pre_auton()
 {
-
+	resetEncoders();
 }
 
 task autonomous()

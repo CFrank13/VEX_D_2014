@@ -34,6 +34,7 @@ void teleDrive()
 	}
 }
 
+//drive by time
 void autonDrive(int leftPower, int rightPower, int duration)
 {
 	setLeftDriveMotors(leftPower);
@@ -41,6 +42,27 @@ void autonDrive(int leftPower, int rightPower, int duration)
 	wait1Msec(duration);
 	setLeftDriveMotors(0);
 	setRightDriveMotors(0);
+}
+
+//drive by degrees
+void autonDrive(int leftPower, int rightPower, int leftTarget, int rightTarget)
+{
+	resetDriveEncoders();
+
+	setLeftDriveMotors(leftPower);
+	setRightDriveMotors(rightPower);
+
+	while(leftDriveEncoder < leftTarget || rightDriveEncoder < rightTarget)
+	{
+		if(leftDriveEncoder >= leftTarget)
+		{
+			setLeftDriveMotors(0);
+		}
+		if(rightDriveEncoder >= rightTarget)
+		{
+			setRightDriveMotors(0);
+		}
+	}
 }
 
 void updateDrive()
