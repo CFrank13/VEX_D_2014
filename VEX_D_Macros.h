@@ -19,7 +19,7 @@ void updateOI()
 
 	intake = vexRT[Btn5U];
 	outtake = vexRT[Btn5D];
-	conveyorBrake = vexRT[Btn8R];
+	conveyorBrake = vexRT[Btn7L];
 
 	raise6Bar = vexRT[Btn6U];
 	drop6Bar = vexRT[Btn6D];

@@ -1,4 +1,3 @@
-#pragma config(Sensor, dgtl12, flipper_piston, sensorDigitalOut)
 #pragma config(Motor,  port1,           left_back_drive, tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,           left_6bar_B,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           right_front_drive, tmotorVex393_MC29, openLoop)
@@ -26,8 +25,7 @@ void pre_auton()
 
 task autonomous()
 {
-	//redAuton(2);
-	blueAuton(2);
+	basicAuton_Stack();
 }
 
 task usercontrol()

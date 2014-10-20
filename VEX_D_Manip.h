@@ -31,8 +31,8 @@ void setConveyorMotors(int power)
 	}
 	else
 	{
-		motor[left_conveyor] = power / 2;
-		motor[right_conveyor] = power / 2;
+		motor[left_conveyor] = power / 3;
+		motor[right_conveyor] = power / 3;
 	}
 }
 void set6BarMotors(int power)
@@ -41,10 +41,6 @@ void set6BarMotors(int power)
 	motor[left_6bar_B] = power;
 	motor[right_6bar_A] = power;
 	motor[right_6bar_B] = power;
-}
-void setFlipperPiston(int position)
-{
-	SensorValue[flipper_piston] = position;
 }
 
 void teleConveyor()
