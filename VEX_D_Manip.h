@@ -38,10 +38,10 @@ void setConveyorMotors(int power)
 }
 void set6BarMotors(int power)
 {
-	motor[left_6bar_A] = power;
-	motor[left_6bar_B] = power;
-	motor[right_6bar_A] = power;
-	motor[right_6bar_B] = power;
+	motor[left_6Bar_A] = power;
+	motor[left_6Bar_B] = power;
+	motor[right_6Bar_A] = power;
+	motor[right_6Bar_B] = power;
 }
 
 void teleConveyor()
@@ -81,6 +81,7 @@ void autonConveyor(int power, int duration)
 	wait1Msec(duration);
 	setConveyorMotors(0);
 }
+
 void auton6Bar(int power, int duration)
 {
 	set6BarMotors(power);

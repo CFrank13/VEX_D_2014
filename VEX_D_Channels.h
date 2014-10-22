@@ -12,6 +12,12 @@ int conveyorBrake = 0;
 int raise6Bar = 0;
 int drop6Bar = 0;
 
+//Preset Heights
+int goFloor = 0;
+int goLow = 0;
+int goMedium = 0;
+int goHigh = 0;
+
 void updateChannels()
 {
 	leftDrive = vexRT[Ch3];
@@ -23,4 +29,10 @@ void updateChannels()
 
 	raise6Bar = vexRT[Btn6U];
 	drop6Bar = vexRT[Btn6D];
+
+	goFloor = vexRT[Btn5DXmtr2];
+	goLow = vexRT[Btn5UXmtr2];
+	goMedium = vexRT[Btn6DXmtr2];
+	goHigh = vexRT[Btn6UXmtr2];
+
 }

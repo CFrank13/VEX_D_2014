@@ -53,13 +53,13 @@ void autonDrive(int leftPower, int rightPower, int leftTarget, int rightTarget)
 	setLeftDriveMotors(leftPower);
 	setRightDriveMotors(rightPower);
 
-	while(leftDriveEncoder < leftTarget || rightDriveEncoder < rightTarget)
+	while(SensorValue[left_drive_encoder] < leftTarget || SensorValue[right_drive_encoder] < rightTarget)
 	{
-		if(leftDriveEncoder >= leftTarget)
+		if(SensorValue[left_drive_encoder] >= leftTarget)
 		{
 			setLeftDriveMotors(0);
 		}
-		if(rightDriveEncoder >= rightTarget)
+		if(SensorValue[right_drive_encoder] >= rightTarget)
 		{
 			setRightDriveMotors(0);
 		}
