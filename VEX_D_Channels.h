@@ -1,16 +1,21 @@
 
+static int DEADZONE = 15;
+
 //Drive
 int leftDrive = 0;
 int rightDrive = 0;
 
-//Conveyer
-int intake = 0;
-int outtake = 0;
-int conveyorBrake = 0;
+//Strafing
+int strafeLeft = 0;
+int strafeRight = 0;
+int strafeSpeedToggle = 0;
 
 //Lift
 int raise6Bar = 0;
 int drop6Bar = 0;
+
+//Conveyer
+int convey = 0;
 
 //Preset Heights
 int goFloor = 0;
@@ -23,16 +28,17 @@ void updateChannels()
 	leftDrive = vexRT[Ch3];
 	rightDrive = vexRT[Ch2];
 
-	intake = vexRT[Btn5U];
-	outtake = vexRT[Btn5D];
-	conveyorBrake = vexRT[Btn7L];
+	strafeLeft = vexRT[Btn6U];
+	strafeRight = vexRT[Btn6D];
+	strafeSpeedToggle = vexRT[Btn8R];
 
-	raise6Bar = vexRT[Btn6U];
-	drop6Bar = vexRT[Btn6D];
+	raise6Bar = vexRT[Btn5U];
+	drop6Bar = vexRT[Btn5D];
+
+	convey = vexRT[Ch3Xmtr2];
 
 	goFloor = vexRT[Btn5DXmtr2];
 	goLow = vexRT[Btn5UXmtr2];
 	goMedium = vexRT[Btn6DXmtr2];
 	goHigh = vexRT[Btn6UXmtr2];
-
 }

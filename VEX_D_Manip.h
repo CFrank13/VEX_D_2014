@@ -1,38 +1,15 @@
 #include "VEX_D_Channels.h"
 #include "VEX_D_Encoders.h"
 
-bool shift = true;
-bool isHalfSpeed = false;
-bool lastToggle = true;
-bool temp = false;
+int currentConveyorPosition = 0;
+int deltaConveyorPosition = 0;
 
-void toggleConveyorSpeed()
-{
-	if(conveyorBrake)
-	{
-		if(shift)
-		{
-			temp = lastToggle;
-			lastToggle = isHalfSpeed;
-			isHalfSpeed = temp;
-		}
-		shift = false;
-	}
-	else
-	{
-		shift = true;
-	}
-}
+int current6BarPosition = 0;
+int delta6BarPosition = 0;
+
 void setConveyorMotors(int power)
 {
-	if(!isHalfSpeed)
-	{
-		motor[conveyor] = power;
-	}
-	else
-	{
-		motor[conveyor] = power / 3;
-	}
+	motor[conveyor] = power;
 }
 void set6BarMotors(int power)
 {
@@ -44,13 +21,9 @@ void set6BarMotors(int power)
 
 void teleConveyor()
 {
-	if(intake)
+	if(abs(convey) > DEADZONE)
 	{
-		setConveyorMotors(-127);
-	}
-	else if(outtake)
-	{
-		setConveyorMotors(127);
+		setConveyorMotors(convey);
 	}
 	else
 	{
@@ -86,12 +59,6 @@ void auton6Bar(int power, int duration)
 	wait1Msec(duration);
 	set6BarMotors(0);
 }
-
-int currentConveyorPosition = 0;
-int deltaConveyorPosition = 0;
-
-int current6BarPosition = 0;
-int delta6BarPosition = 0;
 
 void moveConveyorToPosition(int targetPosition)
 {
@@ -143,7 +110,6 @@ void move6BarToPosition(int targetPosition)
 
 void updateManip()
 {
-	toggleConveyorSpeed();
 	teleConveyor();
 	tele6Bar();
 }
