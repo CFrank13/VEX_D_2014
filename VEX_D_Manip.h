@@ -27,13 +27,11 @@ void setConveyorMotors(int power)
 {
 	if(!isHalfSpeed)
 	{
-		motor[left_conveyor] = power;
-		motor[right_conveyor] = power;
+		motor[conveyor] = power;
 	}
 	else
 	{
-		motor[left_conveyor] = power / 3;
-		motor[right_conveyor] = power / 3;
+		motor[conveyor] = power / 3;
 	}
 }
 void set6BarMotors(int power)
@@ -86,6 +84,60 @@ void auton6Bar(int power, int duration)
 {
 	set6BarMotors(power);
 	wait1Msec(duration);
+	set6BarMotors(0);
+}
+
+int currentConveyorPosition = 0;
+int deltaConveyorPosition = 0;
+
+int current6BarPosition = 0;
+int delta6BarPosition = 0;
+
+void moveConveyorToPosition(int targetPosition)
+{
+	currentConveyorPosition = SensorValue[conveyor_encoder];
+	deltaConveyorPosition = targetPosition - currentConveyorPosition;
+
+	if(deltaConveyorPosition > 0)
+	{
+		setConveyorMotors(-127);
+		while(SensorValue[conveyor_encoder] < (currentConveyorPosition + deltaConveyorPosition))
+		{
+			//wait for completion
+		}
+	}
+	else
+	{
+		setConveyorMotors(127);
+		while(SensorValue[conveyor_encoder] > (currentConveyorPosition + deltaConveyorPosition))
+		{
+			//wait for completion
+		}
+	}
+	setConveyorMotors(0);
+}
+
+void move6BarToPosition(int targetPosition)
+{
+	current6BarPosition = SensorValue[left_6Bar_encoder];
+	delta6BarPosition = targetPosition - current6BarPosition;
+
+	if(delta6BarPosition > 0)
+	{
+		set6BarMotors(127);
+		while(SensorValue[left_6Bar_encoder] < (current6BarPosition + delta6BarPosition))
+		{
+			//wait for completion
+		}
+	}
+	else
+	{
+		set6BarMotors(-127);
+		while(SensorValue[left_6Bar_encoder] > (current6BarPosition + delta6BarPosition))
+		{
+			//wait for completion
+		}
+	}
 	set6BarMotors(0);
 }
 
