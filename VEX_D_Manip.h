@@ -1,9 +1,6 @@
 #include "VEX_D_Channels.h"
 #include "VEX_D_Encoders.h"
 
-int currentConveyorPosition = 0;
-int deltaConveyorPosition = 0;
-
 int current6BarPosition = 0;
 int delta6BarPosition = 0;
 
@@ -58,30 +55,6 @@ void auton6Bar(int power, int duration)
 	set6BarMotors(power);
 	wait1Msec(duration);
 	set6BarMotors(0);
-}
-
-void moveConveyorToPosition(int targetPosition)
-{
-	currentConveyorPosition = SensorValue[conveyor_encoder];
-	deltaConveyorPosition = targetPosition - currentConveyorPosition;
-
-	if(deltaConveyorPosition > 0)
-	{
-		setConveyorMotors(-127);
-		while(SensorValue[conveyor_encoder] < (currentConveyorPosition + deltaConveyorPosition))
-		{
-			//wait for completion
-		}
-	}
-	else
-	{
-		setConveyorMotors(127);
-		while(SensorValue[conveyor_encoder] > (currentConveyorPosition + deltaConveyorPosition))
-		{
-			//wait for completion
-		}
-	}
-	setConveyorMotors(0);
 }
 
 void move6BarToPosition(int targetPosition)
