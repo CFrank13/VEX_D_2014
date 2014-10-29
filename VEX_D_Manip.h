@@ -6,7 +6,7 @@ int initialRight6BarPosition = 0;
 int deltaLeft6BarPosition = 0;
 int deltaRight6BarPosition = 0;
 
-void setConveyorMotors(int power)
+void setConveyorMotor(int power)
 {
 	motor[conveyor] = power;
 }
@@ -33,11 +33,11 @@ void teleConveyor()
 {
 	if(abs(convey) > DEADZONE)
 	{
-		setConveyorMotors(convey);
+		setConveyorMotor(convey);
 	}
 	else
 	{
-		setConveyorMotors(0);
+		setConveyorMotor(0);
 	}
 }
 
@@ -57,11 +57,16 @@ void tele6Bar()
 	}
 }
 
-void autonConveyor(int power, int duration)
+void autonConveyor(int power, int target)
 {
-	setConveyorMotors(power);
-	wait1Msec(duration);
-	setConveyorMotors(0);
+	resetConveyorEncoder();
+	setConveyorMotor(power);
+
+	while(abs(SensorValue[conveyor_encoder]) < target)
+	{
+		//wait for completion
+	}
+	setConveyorMotor(0);
 }
 
 void auton6Bar(int power, int duration)
