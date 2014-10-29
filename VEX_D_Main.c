@@ -31,7 +31,8 @@ void pre_auton()
 
 task autonomous()
 {
-	basicAuton_Stack();
+	basicStack();
+	//triStack();
 }
 
 task usercontrol()
