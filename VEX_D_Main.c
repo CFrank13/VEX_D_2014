@@ -1,3 +1,4 @@
+#pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(Sensor, dgtl1,  right_drive_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl3,  left_drive_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  right_6Bar_encoder, sensorQuadEncoder)
@@ -6,7 +7,7 @@
 #pragma config(Motor,  port1,           left_back_drive, tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,           left_6Bar_B,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           right_front_drive, tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port4,           conveyor,      tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port4,           conveyor,      tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port5,           left_front_drive, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           strafer,       tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,           left_6Bar_A,   tmotorVex393_MC29, openLoop)
@@ -41,6 +42,7 @@ task usercontrol()
 		updateCombos();
 		updateDrive();
 		updateManip();
+		updateEncoders(left_6Bar_encoder, right_6Bar_encoder);
 	}
 
 }

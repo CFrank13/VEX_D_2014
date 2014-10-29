@@ -29,11 +29,13 @@ void setLeftDriveMotors(int power)
 	motor[left_back_drive] = power;
 	motor[left_front_drive] = power;
 }
+
 void setRightDriveMotors(int power)
 {
 	motor[right_back_drive] = power;
 	motor[right_front_drive] = power;
 }
+
 void setStrafeMotor(int power)
 {
 	if(!isHalfSpeed)

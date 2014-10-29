@@ -1,8 +1,24 @@
 
-static int FLOOR_6B = 60;
-static int LOW_6B = 180;
-static int MEDIUM_6B = 360;
-static int HIGH_6B = 540;
+static int LOW_6B = 65;
+static int MEDIUM_6B = 175;
+static int HIGH_6B = 515;
+
+string encoderValueA;
+string encoderValueB;
+
+void updateEncoders(tSensors encoderA, tSensors encoderB)
+{
+	clearLCDLine(0);											// Clear line 1 (0) of the LCD
+	clearLCDLine(1);											// Clear line 2 (1) of the LCD
+
+	displayLCDString(0, 0, "Enc A: ");
+	stringFormat(encoderValueA, "%d", SensorValue[encoderA],'E'); //Build the value to be displayed
+	displayNextLCDString(encoderValueA);
+
+	displayLCDString(1, 0, "Enc B: ");
+	stringFormat(encoderValueB, "%d", SensorValue[encoderB],'E'); //Build the value to be displayed
+	displayNextLCDString(encoderValueB);
+}
 
 void resetDriveEncoders()
 {

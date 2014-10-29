@@ -2,11 +2,7 @@
 
 void presetHeights()
 {
-	if(goFloor)
-	{
-		move6BarToPosition(FLOOR_6B);
-	}
-	else if(goLow)
+	if(goLow)
 	{
 		move6BarToPosition(LOW_6B);
 	}
