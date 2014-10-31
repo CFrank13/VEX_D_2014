@@ -24,6 +24,28 @@
 #include "Vex_Competition_Includes.c" //Main competition background code...do not modify!
 #include "VEX_D_Combos.h"
 
+//stack 3 skyrise pieces with cube (red side)
+void triStack()
+{
+	//first skyrise piece
+	autonDrive(-80, -80, 110);
+	autonConveyor(-50, 640);
+	wait1Msec(500);
+	autonDrive(100, 100, 230);
+	wait1Msec(500);
+	move6BarToPosition(100);
+	wait1Msec(500);
+	autonDrive(-80, -80, 110);
+	wait1Msec(500);
+	autonDrive(-60, 60, 195);
+	wait1Msec(500);
+	autonDrive(30, 30, 25);
+	wait1Msec(1000);
+	autonConveyor(-50, 600);
+	wait1Msec(500);
+	autonDrive(-60, -60, 100);
+}
+
 void pre_auton()
 {
 	resetEncoders();
@@ -31,8 +53,8 @@ void pre_auton()
 
 task autonomous()
 {
-	basicStack();
-	//triStack();
+	//basicStack();
+	triStack();
 }
 
 task usercontrol()
@@ -43,7 +65,7 @@ task usercontrol()
 		updateCombos();
 		updateDrive();
 		updateManip();
-		updateEncoders(left_6Bar_encoder, right_6Bar_encoder);
+		updateEncoders(right_drive_encoder, conveyor_encoder);
 	}
 
 }

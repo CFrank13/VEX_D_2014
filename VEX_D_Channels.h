@@ -18,7 +18,6 @@ int drop6Bar = 0;
 int convey = 0;
 
 //Preset Heights
-int goFloor = 0;
 int goLow = 0;
 int goMedium = 0;
 int goHigh = 0;
@@ -37,8 +36,7 @@ void updateChannels()
 
 	convey = vexRT[Ch3Xmtr2];
 
-	goFloor = vexRT[Btn5DXmtr2];
-	goLow = vexRT[Btn5UXmtr2];
-	goMedium = vexRT[Btn6DXmtr2];
+	goLow = vexRT[Btn5DXmtr2];
+	goMedium = vexRT[Btn5UXmtr2];
 	goHigh = vexRT[Btn6UXmtr2];
 }

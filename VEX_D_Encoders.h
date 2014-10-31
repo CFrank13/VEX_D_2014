@@ -6,6 +6,16 @@ static int HIGH_6B = 515;
 string encoderValueA;
 string encoderValueB;
 
+void updateEncoders(tSensors encoder)
+{
+	clearLCDLine(0);											// Clear line 1 (0) of the LCD
+	clearLCDLine(1);											// Clear line 2 (1) of the LCD
+
+	displayLCDString(0, 0, "Enc: ");
+	stringFormat(encoderValueA, "%d", SensorValue[encoder],'E'); //Build the value to be displayed
+	displayNextLCDString(encoderValueA);
+}
+//2 encoder overload
 void updateEncoders(tSensors encoderA, tSensors encoderB)
 {
 	clearLCDLine(0);											// Clear line 1 (0) of the LCD

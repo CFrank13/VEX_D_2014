@@ -1,10 +1,8 @@
 #include "VEX_D_Channels.h"
 #include "VEX_D_Encoders.h"
 
-int initialLeft6BarPosition = 0;
-int initialRight6BarPosition = 0;
-int deltaLeft6BarPosition = 0;
-int deltaRight6BarPosition = 0;
+int initial6BarPosition = 0;
+int delta6BarPosition = 0;
 
 void setConveyorMotor(int power)
 {
@@ -79,47 +77,28 @@ void auton6Bar(int power, int duration)
 void move6BarToPosition(int targetPosition)
 {
 	//save the initial position of our 6Bar
-	initialLeft6BarPosition = SensorValue[left_6Bar_encoder];
-	initialRight6BarPosition = SensorValue[right_6Bar_encoder];
+	initial6BarPosition = SensorValue[left_6Bar_encoder];
 
 	//number of degrees we want to move
-	deltaLeft6BarPosition = targetPosition - initialLeft6BarPosition;
-	deltaRight6BarPosition = targetPosition - initialRight6BarPosition;
+	delta6BarPosition = targetPosition - initial6BarPosition;
 
 	//if we want to move upward...
-	if(deltaLeft6BarPosition > 0)
+	if(delta6BarPosition > 0)
 	{
-		//move while either the left encoders or the right encoders have not reached their target
+		//move while the left encoder has not reached their target
 		set6BarMotors(127);
-		while((SensorValue[left_6Bar_encoder] < (initialLeft6BarPosition + deltaLeft6BarPosition))
-			|| (SensorValue[right_6Bar_encoder] < (initialRight6BarPosition + deltaRight6BarPosition)))
+		while(SensorValue[left_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
 		{
-			//stop either the left or the right motors once they reach their target (stopped seperately!!)
-			if(SensorValue[left_6Bar_encoder] >= (initialLeft6BarPosition + deltaLeft6BarPosition))
-			{
-				setLeft6BarMotors(0);
-			}
-			if(SensorValue[right_6Bar_encoder] >= (initialRight6BarPosition + deltaRight6BarPosition))
-			{
-				setRight6BarMotors(0);
-			}
+			//wait for completion
 		}
 	}
 	//if we want want to move downward...
 	else
 	{
 		set6BarMotors(-127);
-		while((SensorValue[left_6Bar_encoder] > (initialLeft6BarPosition + deltaLeft6BarPosition))
-			|| (SensorValue[right_6Bar_encoder] > (initialRight6BarPosition + deltaRight6BarPosition)))
+		while(SensorValue[left_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
 		{
-			if(SensorValue[left_6Bar_encoder] <= (initialLeft6BarPosition + deltaLeft6BarPosition))
-			{
-				setLeft6BarMotors(0);
-			}
-			if(SensorValue[right_6Bar_encoder] <= (initialRight6BarPosition + deltaRight6BarPosition))
-			{
-				setRight6BarMotors(0);
-			}
+
 		}
 	}
 	set6BarMotors(0);
