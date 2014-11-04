@@ -104,6 +104,36 @@ void move6BarToPosition(int targetPosition)
 	set6BarMotors(0);
 }
 
+void move6BarToPosition(int power, int targetPosition)
+{
+	//save the initial position of our 6Bar
+	initial6BarPosition = SensorValue[left_6Bar_encoder];
+
+	//number of degrees we want to move
+	delta6BarPosition = targetPosition - initial6BarPosition;
+
+	//if we want to move upward...
+	if(delta6BarPosition > 0)
+	{
+		//move while the left encoder has not reached their target
+		set6BarMotors(power);
+		while(SensorValue[left_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
+		{
+			//wait for completion
+		}
+	}
+	//if we want want to move downward...
+	else
+	{
+		set6BarMotors(-power);
+		while(SensorValue[left_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
+		{
+
+		}
+	}
+	set6BarMotors(0);
+}
+
 void updateManip()
 {
 	teleConveyor();

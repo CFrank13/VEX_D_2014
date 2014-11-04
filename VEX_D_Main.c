@@ -28,22 +28,22 @@
 void triStack()
 {
 	//first skyrise piece
-	autonDrive(-80, -80, 110);
-	autonConveyor(-50, 640);
+	autonDrive(-80, -80, 110); //back up
+	autonConveyor(-50, 640); //get conveyor to position
 	wait1Msec(500);
-	autonDrive(100, 100, 230);
+	autonDrive(100, 100, 230); //drive into piece
 	wait1Msec(500);
-	move6BarToPosition(100);
+	move6BarToPosition(120); //pick up piece
 	wait1Msec(500);
-	autonDrive(-80, -80, 110);
+	autonDrive(-80, -80, 120); //back up
 	wait1Msec(500);
-	autonDrive(-60, 60, 195);
+	autonDrive(-60, 60, 125); //turn to the stack slot
 	wait1Msec(500);
-	autonDrive(30, 30, 25);
-	wait1Msec(1000);
-	autonConveyor(-50, 600);
+	autonConveyor(-50, 500); //drop piece
 	wait1Msec(500);
-	autonDrive(-60, -60, 100);
+	auton6Bar(-50, 400);
+	wait1Msec(500);
+	autonDrive(-60, -60, 100); //back up
 }
 
 void pre_auton()
