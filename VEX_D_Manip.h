@@ -55,15 +55,22 @@ void tele6Bar()
 	}
 }
 
-void autonConveyor(int power, int target)
-{
-	resetConveyorEncoder();
-	setConveyorMotor(power);
+//void autonConveyor(int power, int target)
+//{
+//	resetConveyorEncoder();
+//	setConveyorMotor(power);
 
-	while(abs(SensorValue[conveyor_encoder]) < target)
-	{
-		//wait for completion
-	}
+//	while(abs(SensorValue[conveyor_encoder]) < target)
+//	{
+//		//wait for completion
+//	}
+//	setConveyorMotor(0);
+//}
+
+void autonConveyor(int power, int time)
+{
+	setConveyorMotor(power);
+	wait1Msec(time);
 	setConveyorMotor(0);
 }
 

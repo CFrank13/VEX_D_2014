@@ -28,37 +28,39 @@
 void triStack()
 {
 	//first skyrise piece
-	autonDrive(-80, -80, 110); //back up
-	autonConveyor(-50, 640); //get conveyor to position
+	autonDrive(-70, -80, 110); //back up
+	autonConveyor(-50, 1600); //get conveyor to position
 	wait1Msec(500);
-	autonDrive(100, 100, 230); //drive into piece
+	autonDrive(90, 100, 250); //drive into piece
 	wait1Msec(500);
 	move6BarToPosition(120); //pick up piece
 	wait1Msec(500);
-	autonDrive(-80, -80, 120); //back up
+	autonDrive(-70, -80, 120); //back up
 	wait1Msec(500);
 	autonDrive(-60, 60, 125); //turn to the stack slot
 	wait1Msec(500);
-	autonConveyor(-50, 500); //drop piece
+	autonDrive(-25, -30, 20); //back up slightly
 	wait1Msec(500);
-	auton6Bar(-50, 400); //lower 6bar to ease piece into place
+	autonConveyor(-50, 900); //drop piece
 	wait1Msec(500);
 	autonDrive(-60, -60, 100); //back up
 	wait1Msec(500);
 
 	//second skyrise piece
-	autonDrive(50, -50, 100); //turn to the skyrise loading dock
+	move6BarToPosition(60); //lower 6bar to reset to new cycle
 	wait1Msec(500);
-	autonConveyor(50, 460);	//raise conveyor to correct height
+	autonDrive(50, -50, 105); //turn to the skyrise loading dock
 	wait1Msec(500);
-	autonDrive(40, 60, 380); //drive into skyrise piece
+	autonConveyor(50, 800);	//raise conveyor to correct height
+	wait1Msec(500);
+	autonDrive(70, 80, 400); //drive into skyrise piece
 	wait1Msec(500);
 	move6BarToPosition(120); //pick up piece
 	wait1Msec(500);
-	autonDrive(-50, -50, 380); //back up
-	wait1Msec(500);
-	autonDrive(-50, 50, 110); //turn to the skyrise scoring post
-	wait1Msec(500);
+	//autonDrive(-40, -50, 400); //back up
+	//wait1Msec(500);
+	//autonDrive(-50, 50, 110); //turn to the skyrise scoring post
+	//wait1Msec(500);
 
 }
 
