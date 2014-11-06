@@ -41,9 +41,25 @@ void triStack()
 	wait1Msec(500);
 	autonConveyor(-50, 500); //drop piece
 	wait1Msec(500);
-	auton6Bar(-50, 400);
+	auton6Bar(-50, 400); //lower 6bar to ease piece into place
 	wait1Msec(500);
 	autonDrive(-60, -60, 100); //back up
+	wait1Msec(500);
+
+	//second skyrise piece
+	autonDrive(50, -50, 100); //turn to the skyrise loading dock
+	wait1Msec(500);
+	autonConveyor(50, 460);	//raise conveyor to correct height
+	wait1Msec(500);
+	autonDrive(40, 60, 380); //drive into skyrise piece
+	wait1Msec(500);
+	move6BarToPosition(120); //pick up piece
+	wait1Msec(500);
+	autonDrive(-50, -50, 380); //back up
+	wait1Msec(500);
+	autonDrive(-50, 50, 110); //turn to the skyrise scoring post
+	wait1Msec(500);
+
 }
 
 void pre_auton()
@@ -65,7 +81,7 @@ task usercontrol()
 		updateCombos();
 		updateDrive();
 		updateManip();
-		updateEncoders(right_drive_encoder, conveyor_encoder);
+		updateEncoders(left_6Bar_encoder, conveyor_encoder);
 	}
 
 }
