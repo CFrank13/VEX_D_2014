@@ -24,44 +24,33 @@
 #include "Vex_Competition_Includes.c" //Main competition background code...do not modify!
 #include "VEX_D_Combos.h"
 
-//stack 3 skyrise pieces with cube (red side)
-void triStack()
+//stack 2 skyrise pieces (red side)
+void diStack_Red()
 {
 	//first skyrise piece
-	autonDrive(-70, -80, 110); //back up
-	autonConveyor(-50, 1600); //get conveyor to position
-	wait1Msec(500);
-	autonDrive(90, 100, 250); //drive into piece
-	wait1Msec(500);
+	autonDrive(-110, -120, 110); //back up
+	autonConveyor(-80, 1200); //get conveyor to position
+	autonDrive(110, 120, 250); //drive into piece
 	move6BarToPosition(120); //pick up piece
+	autonDrive(-110, -120, 120); //back up
+	autonDrive(-80, 90, 80); //turn to the stack slot
 	wait1Msec(500);
-	autonDrive(-70, -80, 120); //back up
-	wait1Msec(500);
-	autonDrive(-60, 60, 125); //turn to the stack slot
-	wait1Msec(500);
-	autonDrive(-25, -30, 20); //back up slightly
-	wait1Msec(500);
+	autonDrive(-25, -30, 30); //back up slightly
 	autonConveyor(-50, 900); //drop piece
+	auton6Bar(-50, 200); //correct angle
 	wait1Msec(500);
-	autonDrive(-60, -60, 100); //back up
+	autonDrive(-90, -90, 100); //back up
 	wait1Msec(500);
 
+	//TODO: complete
 	//second skyrise piece
-	move6BarToPosition(60); //lower 6bar to reset to new cycle
-	wait1Msec(500);
-	autonDrive(50, -50, 105); //turn to the skyrise loading dock
-	wait1Msec(500);
-	autonConveyor(50, 800);	//raise conveyor to correct height
-	wait1Msec(500);
-	autonDrive(70, 80, 400); //drive into skyrise piece
-	wait1Msec(500);
-	move6BarToPosition(120); //pick up piece
-	wait1Msec(500);
-	//autonDrive(-40, -50, 400); //back up
-	//wait1Msec(500);
+	autonDrive(90, -90, 115); //turn to the skyrise loading dock
+	//autonConveyor(50, 850);	//raise conveyor to correct height
+	//autonDrive(110, 120, 380); //drive into skyrise piece
+	//move6BarToPosition(120); //pick up piece
+	//autonDrive(-110, -120, 350); //back up
 	//autonDrive(-50, 50, 110); //turn to the skyrise scoring post
 	//wait1Msec(500);
-
 }
 
 void pre_auton()
@@ -72,7 +61,8 @@ void pre_auton()
 task autonomous()
 {
 	//basicStack();
-	triStack();
+	uniStack(true); 			//true = red,
+	//diStack(true);			//false = blue
 }
 
 task usercontrol()
