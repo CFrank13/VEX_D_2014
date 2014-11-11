@@ -84,7 +84,7 @@ void auton6Bar(int power, int duration)
 void move6BarToPosition(int targetPosition)
 {
 	//save the initial position of our 6Bar
-	initial6BarPosition = SensorValue[left_6Bar_encoder];
+	initial6BarPosition = SensorValue[right_6Bar_encoder];
 
 	//number of degrees we want to move
 	delta6BarPosition = targetPosition - initial6BarPosition;
@@ -94,7 +94,7 @@ void move6BarToPosition(int targetPosition)
 	{
 		//move while the left encoder has not reached their target
 		set6BarMotors(127);
-		while(SensorValue[left_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
+		while(SensorValue[right_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
 		{
 			//wait for completion
 		}
@@ -103,7 +103,7 @@ void move6BarToPosition(int targetPosition)
 	else
 	{
 		set6BarMotors(-127);
-		while(SensorValue[left_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
+		while(SensorValue[right_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
 		{
 
 		}
@@ -114,7 +114,7 @@ void move6BarToPosition(int targetPosition)
 void move6BarToPosition(int power, int targetPosition)
 {
 	//save the initial position of our 6Bar
-	initial6BarPosition = SensorValue[left_6Bar_encoder];
+	initial6BarPosition = SensorValue[right_6Bar_encoder];
 
 	//number of degrees we want to move
 	delta6BarPosition = targetPosition - initial6BarPosition;
@@ -124,7 +124,7 @@ void move6BarToPosition(int power, int targetPosition)
 	{
 		//move while the left encoder has not reached their target
 		set6BarMotors(power);
-		while(SensorValue[left_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
+		while(SensorValue[right_6Bar_encoder] < (initial6BarPosition + delta6BarPosition))
 		{
 			//wait for completion
 		}
@@ -133,7 +133,7 @@ void move6BarToPosition(int power, int targetPosition)
 	else
 	{
 		set6BarMotors(-power);
-		while(SensorValue[left_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
+		while(SensorValue[right_6Bar_encoder] > (initial6BarPosition + delta6BarPosition))
 		{
 
 		}

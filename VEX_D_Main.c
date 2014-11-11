@@ -1,9 +1,10 @@
 #pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(Sensor, dgtl1,  right_drive_encoder, sensorQuadEncoder)
-#pragma config(Sensor, dgtl3,  left_drive_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  left_6Bar_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl5,  right_6Bar_encoder, sensorQuadEncoder)
-#pragma config(Sensor, dgtl7,  left_6Bar_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl7,  left_drive_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl9,  conveyor_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl11, strafer_encoder, sensorQuadEncoder)
 #pragma config(Motor,  port1,           left_back_drive, tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,           left_6Bar_B,   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           right_front_drive, tmotorVex393_MC29, openLoop)
@@ -24,33 +25,28 @@
 #include "Vex_Competition_Includes.c" //Main competition background code...do not modify!
 #include "VEX_D_Combos.h"
 
-//stack 2 skyrise pieces (red side)
-void diStack_Red()
+void triStack()
 {
-	//first skyrise piece
-	autonDrive(-110, -120, 110); //back up
-	autonConveyor(-80, 1200); //get conveyor to position
-	autonDrive(110, 120, 250); //drive into piece
-	move6BarToPosition(120); //pick up piece
-	autonDrive(-110, -120, 120); //back up
-	autonDrive(-80, 90, 80); //turn to the stack slot
-	wait1Msec(500);
-	autonDrive(-25, -30, 30); //back up slightly
-	autonConveyor(-50, 900); //drop piece
-	auton6Bar(-50, 200); //correct angle
-	wait1Msec(500);
-	autonDrive(-90, -90, 100); //back up
-	wait1Msec(500);
+	//strafe to knock cube onto stack
+	//drive maneuver
+	//pick up SR piece #1
+	//drive maneuver
+	//stack SR piece #1
 
-	//TODO: complete
-	//second skyrise piece
-	autonDrive(90, -90, 115); //turn to the skyrise loading dock
-	//autonConveyor(50, 850);	//raise conveyor to correct height
-	//autonDrive(110, 120, 380); //drive into skyrise piece
-	//move6BarToPosition(120); //pick up piece
-	//autonDrive(-110, -120, 350); //back up
-	//autonDrive(-50, 50, 110); //turn to the skyrise scoring post
-	//wait1Msec(500);
+	//drive maneuver
+	//pick up SR piece #2
+	//drive maneuver
+	//stack SR piece #2
+
+	//drive maneuver
+	//pick up SR piece #3
+	//drive maneuver
+	//stack SR piece #3
+
+	//drive maneuver
+	//pick up SR piece #4
+	//drive maneuver
+	//stack SR piece #4
 }
 
 void pre_auton()
@@ -61,8 +57,9 @@ void pre_auton()
 task autonomous()
 {
 	//basicStack();
-	uniStack(true); 			//true = red,
-	//diStack(true);			//false = blue
+	//uniStack();
+	//diStack();
+	triStack();
 }
 
 task usercontrol()
@@ -73,7 +70,6 @@ task usercontrol()
 		updateCombos();
 		updateDrive();
 		updateManip();
-		updateEncoders(left_6Bar_encoder, conveyor_encoder);
+		updateEncoders(right_6Bar_encoder, left_drive_encoder);
 	}
-
 }
