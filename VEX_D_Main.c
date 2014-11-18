@@ -27,26 +27,32 @@
 
 void triStack()
 {
-	//strafe to knock cube onto stack
-	//drive maneuver
-	//pick up SR piece #1
-	//drive maneuver
-	//stack SR piece #1
-
-	//drive maneuver
-	//pick up SR piece #2
-	//drive maneuver
-	//stack SR piece #2
-
-	//drive maneuver
-	//pick up SR piece #3
-	//drive maneuver
-	//stack SR piece #3
-
-	//drive maneuver
-	//pick up SR piece #4
-	//drive maneuver
-	//stack SR piece #4
+	move6BarToPosition(40); //raise 6bar to knock cube onto stack and prevent drag
+	wait1Msec(500);
+	autonDrive(60, 60, 100); //move forward to allow room for turn
+	wait1Msec(500);
+	autonDrive(-60, 60, 150);	//turn to lign up with skyrise piece
+	wait1Msec(500);
+	autonDrive(60, 60, 150); //move forward to make room for 180
+	wait1Msec(500);
+	autonDrive(-60, 60, 550); //180 turn
+	wait1Msec(500);
+	autonConveyor(-70, 1600); //convey to pickup height
+	wait1Msec(500);
+	autonDrive(80, 80, 150); //drive into piece
+	wait1Msec(500);
+	autonDrive(-50, -50, 40); //add some slack for clean pickup
+	wait1Msec(500);
+	move6BarToPosition(160); //pick up SR piece #1
+	wait1Msec(500);
+	autonDrive(-60, -60, 115); //back up
+	wait1Msec(500);
+	autonDrive(-50, 50, 115); //turn to the skyrise slot
+	wait1Msec(500);
+	autonConveyor(70, 800); //stack SR piece #1
+	wait1Msec(500);
+	autonDrive(-50, -50, 115); //back up after stack
+	wait1Msec(500);
 }
 
 void pre_auton()
@@ -70,6 +76,6 @@ task usercontrol()
 		updateCombos();
 		updateDrive();
 		updateManip();
-		updateEncoders(right_6Bar_encoder, left_drive_encoder);
+		updateEncoders(left_drive_encoder, right_drive_encoder);
 	}
 }

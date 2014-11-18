@@ -92,14 +92,14 @@ void teleStrafe()
 }
 
 //drive by time
-//void autonDrive(int leftPower, int rightPower, int duration)
-//{
-//	setLeftDriveMotors(leftPower);
-//	setRightDriveMotors(rightPower);
-//	wait1Msec(duration);
-//	setLeftDriveMotors(0);
-//	setRightDriveMotors(0);
-//}
+void autonDrive_Time(int leftPower, int rightPower, int duration)
+{
+	setLeftDriveMotors(leftPower);
+	setRightDriveMotors(rightPower);
+	wait1Msec(duration);
+	setLeftDriveMotors(0);
+	setRightDriveMotors(0);
+}
 
 //drive by degrees
 void autonDrive(int leftPower, int rightPower, int target)
@@ -109,11 +109,26 @@ void autonDrive(int leftPower, int rightPower, int target)
 	setLeftDriveMotors(leftPower);
 	setRightDriveMotors(rightPower);
 
-	while(abs(SensorValue[right_drive_encoder]) < target)
+	//wait for completion
+	while(abs(SensorValue[left_drive_encoder]) < target || abs(SensorValue[right_drive_encoder]) < target)
 	{
-		//wait for completion
+		if(abs(SensorValue[left_drive_encoder]) >= target)
+		{
+			setLeftDriveMotors(0);
+		}
+		if(abs(SensorValue[right_drive_encoder]) >= target)
+		{
+			setRightDriveMotors(0);
+		}
 	}
 	setDriveMotors(0);
+}
+
+void autonStrafe(int power, int duration)
+{
+	setStrafeMotor(power);
+	wait1Msec(duration);
+	setStrafeMotor(0);
 }
 
 void updateDrive()
