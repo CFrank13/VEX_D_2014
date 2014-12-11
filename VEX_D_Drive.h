@@ -124,12 +124,12 @@ void autonDrive(int leftPower, int rightPower, int target)
 	setDriveMotors(0);
 }
 
-void autonStrafe(int power, int duration)
-{
-	setStrafeMotor(power);
-	wait1Msec(duration);
-	setStrafeMotor(0);
-}
+//void autonStrafe(int power, int duration)
+//{
+//	setStrafeMotor(power);
+//	wait1Msec(duration);
+//	setStrafeMotor(0);
+//}
 
 void updateDrive()
 {

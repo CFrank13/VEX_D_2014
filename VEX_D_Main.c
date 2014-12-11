@@ -1,6 +1,6 @@
 #pragma config(UART_Usage, UART1, uartVEXLCD, baudRate19200, IOPins, None, None)
 #pragma config(Sensor, dgtl1,  right_drive_encoder, sensorQuadEncoder)
-#pragma config(Sensor, dgtl3,  left_6Bar_encoder, sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  left_6Bar_encoder, sensorQuadEncoder)zXZX
 #pragma config(Sensor, dgtl5,  right_6Bar_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl7,  left_drive_encoder, sensorQuadEncoder)
 #pragma config(Sensor, dgtl9,  conveyor_encoder, sensorQuadEncoder)
@@ -25,36 +25,6 @@
 #include "Vex_Competition_Includes.c" //Main competition background code...do not modify!
 #include "VEX_D_Combos.h"
 
-void triStack()
-{
-	move6BarToPosition(40); //raise 6bar to knock cube onto stack and prevent drag
-	wait1Msec(500);
-	autonDrive(60, 60, 100); //move forward to allow room for turn
-	wait1Msec(500);
-	autonDrive(-60, 60, 150);	//turn to lign up with skyrise piece
-	wait1Msec(500);
-	autonDrive(60, 60, 150); //move forward to make room for 180
-	wait1Msec(500);
-	autonDrive(-60, 60, 550); //180 turn
-	wait1Msec(500);
-	autonConveyor(-70, 1600); //convey to pickup height
-	wait1Msec(500);
-	autonDrive(80, 80, 150); //drive into piece
-	wait1Msec(500);
-	autonDrive(-50, -50, 40); //add some slack for clean pickup
-	wait1Msec(500);
-	move6BarToPosition(160); //pick up SR piece #1
-	wait1Msec(500);
-	autonDrive(-60, -60, 115); //back up
-	wait1Msec(500);
-	autonDrive(-50, 50, 115); //turn to the skyrise slot
-	wait1Msec(500);
-	autonConveyor(70, 800); //stack SR piece #1
-	wait1Msec(500);
-	autonDrive(-50, -50, 115); //back up after stack
-	wait1Msec(500);
-}
-
 void pre_auton()
 {
 	resetEncoders();
@@ -62,14 +32,16 @@ void pre_auton()
 
 task autonomous()
 {
-	//basicStack();
-	//uniStack();
-	//diStack();
-	triStack();
+	//cheatTubing();
+	//uniStack(false); //true = red; false = blue
+	autonDrive_Time(-120, -120, 1000);
+	wait1Msec(500);
+	autonDrive_Time(120, 120, 2000);
 }
 
 task usercontrol()
 {
+	//uniStack(false);
 	while(true)
 	{
 		updateChannels();
